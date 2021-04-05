@@ -1,46 +1,47 @@
 provider "aws" {
         region = "ap-south-1"
+        access_key = "AKIA3OB2LHIJEXXVLDNU"
+        secret_key = "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"
 }
 
 #Creating security group and allowing SSH and HTTP
 
 resource "aws_security_group" "webpage-terra-ssh-http" {
-         name = "webpage-terra-ssh-http"
-         description = "allowing SSH and HTTP traffic" 
+        name = "webpage-terra-ssh-http"
+        description = "allowing ssh and http traffic" 
 
-         ingress {
-                from _port = 22
+        ingress {
+                from_port = 22
                 to_port = 22
                 protocol = "tcp"
                 cidr_blocks = ["0.0.0.0/0"]
         }
         
         ingress {
-                from _port = 80
+                from_port = 80
                 to_port = 80
                 protocol = "tcp"
                 cidr_blocks = ["0.0.0.0/0"]
        }
     
-        egress {
-                from _port = 0
+       egress {
+                from_port = 0
                 to_port = 0
                 protocol = "-1"
                 cidr_blocks = ["0.0.0.0/0"]
         }         
 }
-
 # Closing the security group here
 
 # Creating an AWS Ec2 instance 
 
 resource "aws_instance" "webpage-terra" {
-         ami = "ami-0bcf5425cdc1d8a85"
-         instance_type = "t2.micro"
-         availability_zone = "ap-south-1a"
-         security_groups = ["${aws_security_group.webpage-terra-ssh-http.name}"]
-         key_name = "Viv2
-         user_data = <<-EOF
+        ami = "ami-0bcf5425cdc1d8a85"
+        instance_type = "t2.micro"
+        availability_zone = "ap-south-1a"
+        security_groups = ["${aws_security_group.webpage-terra-ssh-http.name}"]
+        key_name = "Viv2"
+        user_data = <<-EOF
                  #! /bin/bash
                  sudo yum install httpd -y
                  sudo systemctl start httpd
