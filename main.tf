@@ -1,7 +1,7 @@
 provider "aws" {
         region = "ap-south-1"
-        access_key = "AKIA3OB2LHIJEXXVLDNU"
-        secret_key = "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"
+        access_key = ""
+        secret_key = ""
 }
 
 #Creating security group and allowing SSH and HTTP
