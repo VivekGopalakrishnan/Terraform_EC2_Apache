@@ -9,4 +9,5 @@ specify region,access_key and secret key (In a live environment it is always adv
 
 # Creating an AWS Ec2 instance 
 Specify AMI ID as per the region mentioned
-choose the instance type
+choose the instance type, assign security group, provide they key
+Start and Run httpd and Feed data into webserver.
